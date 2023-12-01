@@ -1,4 +1,25 @@
+const spin = document.getElementById('spin');
+spin.style.display = "none";
+function showSpinner(offOn){
+    if(offOn == true){
+    spin.style.display = "block";
+    console.log('oooooooooooooooooon');
+    }
+    else
+    spin.style.display = "none";
+
+}
+
+
+
+
+
+
 const loadData = () => {
+
+    // spin call--------
+    showSpinner(true);
+   
     const input = document.getElementById('search-input');
     const inputText = input.value;
     const show1 = document.getElementById('write');
@@ -10,6 +31,7 @@ const loadData = () => {
         // }
         const div=document.createElement('div');
         div.innerHTML =`<h2 class=" omg text-danger text-center  w-50 mx-auto">Write something</h2>`;
+        showSpinner(false);
         show1.appendChild(div);
         const s = document.getElementById('meal-item');
         s.innerHTML = '';
@@ -22,6 +44,7 @@ const loadData = () => {
         .then( res => res.json())
         .then( data => showData(data))
     }
+    input.value = '';
     
 }
 
@@ -52,6 +75,7 @@ const showData = (meals) =>{
                     </div>
                 </div>
             `
+            showSpinner(false);
             mealItem.appendChild(div);
         }
 
@@ -60,7 +84,8 @@ const showData = (meals) =>{
     else{
         const show1 = document.getElementById('write');
         const div=document.createElement('div');
-        div.innerHTML =`<h2 class="  omg text-danger text-center  w-50 mx-auto">Give a True meal name plz...!</h2>`;
+        div.innerHTML =`<h2 class="  omg text-danger text-center  w-50 mx-auto">Give me a correct keyword.!</h2>`;
+        showSpinner(false);
         show1.appendChild(div);
     }
     
